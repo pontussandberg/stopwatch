@@ -4,18 +4,15 @@ import React, { Component } from 'react';
 
 class StopwatchButtons extends Component {
     render() {
+        let { isRunning, onStart, onStop } = this.props;
         const btnClass = "btn-custom button-5";
         return (
             <React.Fragment>
                 <div className="btn-container">
-                    <div className={btnClass} onClick={this.props.onStart} >
-                        <h4 href="#">Start</h4>
-                        <div className="translate"></div>
-                    </div>
-
-                    <div className={btnClass} onClick={this.props.onStop} >
-                        <h4 href="#">Stop</h4>
-                        <div className="translate"></div>
+                    <div className={isRunning ? "running-button " + btnClass : btnClass}
+                        onClick={isRunning ? onStop : onStart} >
+                        <h4 href="#">{isRunning ? "stop" : "start"}</h4>
+                        <div className={isRunning ? "translated" : "translate"}></div>
                     </div>
 
                     <div className={btnClass} onClick={this.props.onLap} >

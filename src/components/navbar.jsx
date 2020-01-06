@@ -5,7 +5,7 @@ class Navbar extends Component {
         return (
             <header className="main-nav">
                 <div className="container">
-                    <h1>Stopwatch</h1>
+                    <h1 className="logo">Stopwatch</h1>
                 </div>
                 <nav>
 

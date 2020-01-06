@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
 import '../stopwatch.css'
 import Laps from './sw-laps';
 import StopwatchButtons from './sw-buttons';
@@ -10,21 +12,27 @@ class StopWatch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //Hardcoded constant
-            listSize: 5,
-
             isRunning: false,
-            isHoverActive: false,
 
             isLapsOpen: true,
             timeElapsed: null,
             timeThen: null,
             lapTimers: [],
-            listCellCount: Number,
         };
 
         this.interval = null;
+
+        document.addEventListener('keydown', (e) => {
+            let { isRunning } = this.state
+            if (e.keyCode == 32) {
+                e.preventDefault();
+
+                if (isRunning) this.handleStop();
+                else this.handleStart();
+            }
+        });
     }
+
 
     clockLoop = () => {
         let timeThen;
@@ -43,10 +51,8 @@ class StopWatch extends Component {
     }
 
     handleStart = () => {
-        if (!this.state.isRunning) {
-            this.interval = setInterval(this.clockLoop, 10);
-            this.setState({ isRunning: true });
-        }
+        this.interval = setInterval(this.clockLoop, 10);
+        this.setState({ isRunning: true });
     }
 
     handleStop = () => {
@@ -55,12 +61,13 @@ class StopWatch extends Component {
     }
 
     handleReset = () => {
-        this.handleStop();
+        const { isRunning } = this.state;
+
+        if (isRunning) this.handleStop();
 
         this.setState({
             timeElapsed: null,
             timeThen: null,
-
         });
     }
 
@@ -73,14 +80,12 @@ class StopWatch extends Component {
         let lapTimers = [...this.state.lapTimers];
 
         if (timeElapsed) {
+            if (!isLapsOpen) this.handleLapsToggle();
+
             lapTimers.push({ lap: timeElapsed, listIndex: lapTimers.length + 1 });
             const listCellCount = Math.ceil((lapTimers.length) / listSize);
 
-
             this.setState({ lapTimers, listCellCount });
-            // else {
-            //     this.setState({ lapTimers, listCellCount, isLapsOpen: true });
-            // }
         }
     }
 
@@ -94,7 +99,7 @@ class StopWatch extends Component {
 
 
     render() {
-        let { timeElapsed, isLapsOpen, listCellCount, lapTimers, listSize } = this.state;
+        let { timeElapsed, isLapsOpen, listCellCount, lapTimers, listSize, isRunning } = this.state;
         return (
             <div className="stopwatch-app">
                 <div className="clock-container">
@@ -111,6 +116,7 @@ class StopWatch extends Component {
                             onStop={this.handleStop}
                             onLap={this.handleLap}
                             onReset={this.handleReset}
+                            isRunning={isRunning}
                         />
 
                         <ToggleBtn

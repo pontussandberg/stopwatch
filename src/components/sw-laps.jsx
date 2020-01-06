@@ -20,7 +20,6 @@ class Laps extends Component {
                 lapTimers.push({ lap: false, listIndex: '', keyID: i + 1 });
             }
         }
-        console.log(lapTimers);
         return lapTimers;
     }
 

@@ -6,7 +6,7 @@ class Footer extends Component {
         return (
             <footer>
                 <div className="container">
-                    <h1>Stopwatch</h1>
+                    <h1 className="logo">Stopwatch</h1>
 
                     <div className="social-media">
                         <div className="facebook media-icons"></div>
