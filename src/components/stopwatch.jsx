@@ -7,9 +7,9 @@ import ToggleBtn from './sw-toggle-laps';
 import { formatHourMinSec, formatMilliSec } from '../utility/timeFormatter';
 
 class StopWatch extends Component {
-
     constructor(props) {
         super(props);
+
         this.state = {
             isRunning: false,
 
@@ -20,26 +20,33 @@ class StopWatch extends Component {
         };
 
         this.interval = null;
-
-        document.addEventListener('keydown', (e) => {
-            let { isRunning } = this.state
-            if (e.keyCode === 32) {
-                e.preventDefault();
-
-                if (isRunning) this.handleStop();
-                else this.handleStart();
-            }
-        });
+        // this.spaceBarListener = this.spaceBarListener.bind(this);
     }
     componentDidMount() {
         const savedLaps = JSON.parse(localStorage.getItem('laps'));
         if (savedLaps) this.setState({ lapTimers: savedLaps });
+
+        document.addEventListener('keydown', this.spaceBarListener);
+
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.spaceBarListener);
     }
 
     componentDidUpdate() {
         localStorage.setItem('laps', JSON.stringify([...this.state.lapTimers]))
     }
 
+    spaceBarListener = (e) => {
+        let { isRunning } = this.state;
+        if (e.keyCode === 32) {
+            e.preventDefault();
+
+            if (isRunning) this.handleStop();
+            else this.handleStart();
+        }
+    }
 
     clockLoop = () => {
         let timeThen;
@@ -156,5 +163,7 @@ class StopWatch extends Component {
         );
     }
 }
+
+
 
 export default StopWatch;
