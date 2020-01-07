@@ -20,14 +20,12 @@ class StopWatch extends Component {
         };
 
         this.interval = null;
-        // this.spaceBarListener = this.spaceBarListener.bind(this);
     }
     componentDidMount() {
         const savedLaps = JSON.parse(localStorage.getItem('laps'));
         if (savedLaps) this.setState({ lapTimers: savedLaps });
 
         document.addEventListener('keydown', this.spaceBarListener);
-
     }
 
     componentWillUnmount() {
@@ -163,7 +161,4 @@ class StopWatch extends Component {
         );
     }
 }
-
-
-
 export default StopWatch;

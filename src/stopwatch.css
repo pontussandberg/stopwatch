@@ -50,6 +50,7 @@
   list-style: none;
 }
 
+
 .list-index{
   margin-right: 100px;
   color: #EF8354;
@@ -57,7 +58,7 @@
 }
 
 .reset-btn-container{
-  margin-top: 15px;
+  margin: 15px 0;
 }
 
 .reset-list-btn{
@@ -69,7 +70,7 @@
 }
 
 .reset-list-btn:hover{
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid #d95350;
 }
 
 .delete{
