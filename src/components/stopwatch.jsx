@@ -31,6 +31,14 @@ class StopWatch extends Component {
             }
         });
     }
+    componentDidMount() {
+        const savedLaps = JSON.parse(localStorage.getItem('laps'));
+        if (savedLaps) this.setState({ lapTimers: savedLaps });
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('laps', JSON.stringify([...this.state.lapTimers]))
+    }
 
 
     clockLoop = () => {
