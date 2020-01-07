@@ -7,8 +7,6 @@
   src: url('./fonts/Montserrat-Regular.ttf');
 }
 
-
-
 /* Laps */
 .laps-toggle-container{
   background-color:#fff;
@@ -57,8 +55,9 @@
   font-family: sans-serif;
 }
 
-.reset-btn-container{
+.laps-header{
   margin: 15px 0;
+  text-align: center;
 }
 
 .reset-list-btn{
@@ -66,11 +65,15 @@
   cursor: pointer;
   color: #d95350;
   display: inline;
-  border-bottom: 1px solid #d95350;
+  border-bottom: 2px solid #d95350;
 }
 
-.reset-list-btn:hover{
-  border-bottom: 2px solid #d95350;
+.reset-list-btn:active{
+  border-bottom: 3px solid #d95350;
+}
+
+.delete-container{
+  margin-bottom: 15px;
 }
 
 .delete{
@@ -79,6 +82,7 @@
   cursor: pointer;
   font-family: 'Montserrat-Regular';
 }
+
 
 /* Clock */
 .clock-container{

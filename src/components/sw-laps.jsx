@@ -30,10 +30,13 @@ class Laps extends Component {
             <React.Fragment>
                 <div className={this.getContainerClasses()} >
                     <div className="container">
-                        <div className="reset-btn-container">
+
+                        <div className="laps-header">
+                            <i>hour / minute / second / centisecond</i>
+                        </div>
+                        <div className="delete-container">
                             <h5 className="reset-list-btn" onClick={onLapReset}> Reset list</h5>
                         </div>
-
                         {this.fillList().map((lap) => (
                             <li className="lap" key={lap.keyID}>
                                 <span className="list-index">{'#' + lap.listIndex}</span>
