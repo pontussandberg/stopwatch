@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import '../stopwatch.css'
 import Laps from './sw-laps';
@@ -24,7 +23,7 @@ class StopWatch extends Component {
 
         document.addEventListener('keydown', (e) => {
             let { isRunning } = this.state
-            if (e.keyCode == 32) {
+            if (e.keyCode === 32) {
                 e.preventDefault();
 
                 if (isRunning) this.handleStop();
@@ -82,7 +81,11 @@ class StopWatch extends Component {
         if (timeElapsed) {
             if (!isLapsOpen) this.handleLapsToggle();
 
-            lapTimers.push({ lap: timeElapsed, listIndex: lapTimers.length + 1 });
+            lapTimers.push({
+                lap: timeElapsed,
+                listIndex: lapTimers.length + 1,
+                keyID: Math.random()
+            });
             const listCellCount = Math.ceil((lapTimers.length) / listSize);
 
             this.setState({ lapTimers, listCellCount });
@@ -90,10 +93,18 @@ class StopWatch extends Component {
     }
 
     handleLapsToggle = () => {
-        let { isLapsOpen, lapTimers } = this.state;
+        let { isLapsOpen } = this.state;
 
         if (!isLapsOpen) this.setState({ isLapsOpen: true });
         else this.setState({ isLapsOpen: false });
+    }
+
+    handleDelete = (lap) => {
+        const laps = [...this.state.lapTimers].filter(l => l.listIndex !== lap.listIndex);
+        for (let i = 0; i < laps.length; i++) {
+            laps[i].listIndex = i + 1;
+        }
+        this.setState({ lapTimers: laps });
     }
 
 
@@ -131,6 +142,7 @@ class StopWatch extends Component {
                     isLapsOpen={isLapsOpen}
                     listSize={listSize}
                     onLapReset={this.handleLapReset}
+                    onDelete={this.handleDelete}
                 />
             </div >
         );

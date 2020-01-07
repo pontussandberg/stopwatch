@@ -17,7 +17,7 @@ class Laps extends Component {
 
         for (let i = 0; i < 5; i++) {
             if (!lapTimers[i]) {
-                lapTimers.push({ lap: false, listIndex: '', keyID: i + 1 });
+                lapTimers.push({ lap: false, listIndex: '', keyID: Math.random() });
             }
         }
         return lapTimers;
@@ -25,7 +25,7 @@ class Laps extends Component {
 
 
     render() {
-        const { onLapReset, lapTimers } = this.props;
+        const { onLapReset, onDelete } = this.props;
         return (
             <React.Fragment>
                 <div className={this.getContainerClasses()} >
@@ -34,10 +34,11 @@ class Laps extends Component {
                             <h5 className="reset-list-btn" onClick={onLapReset}> Reset list</h5>
                         </div>
 
-                        {this.fillList().map(lap => (
-                            <li className="lap" key={lap.laxIndex + 1 || lap.keyID}>
+                        {this.fillList().map((lap) => (
+                            <li className="lap" key={lap.keyID}>
                                 <span className="list-index">{'#' + lap.listIndex}</span>
                                 <span className="lap-time">{lap.lap ? formatHourMinSec(lap.lap) + formatMilliSec(lap.lap) : '-'}</span>
+                                {lap.lap ? <button onClick={() => onDelete(lap)} className="btn btn-danger btn-sm delete">Delete</button> : null}
                             </li>
                         ))}
                     </div>
