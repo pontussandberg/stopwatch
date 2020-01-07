@@ -7,8 +7,8 @@ import ToggleBtn from './sw-toggle-laps';
 import { formatHourMinSec, formatMilliSec } from '../utility/timeFormatter';
 
 class StopWatch extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             isRunning: false,
@@ -21,6 +21,7 @@ class StopWatch extends Component {
 
         this.interval = null;
     }
+
     componentDidMount() {
         const savedLaps = JSON.parse(localStorage.getItem('laps'));
         if (savedLaps) this.setState({ lapTimers: savedLaps });
