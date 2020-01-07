@@ -33,7 +33,11 @@ class StopWatch extends Component {
     }
 
     componentDidUpdate() {
-        localStorage.setItem('laps', JSON.stringify([...this.state.lapTimers]))
+        const { timeElapsed } = this.state;
+        localStorage.setItem('laps', JSON.stringify([...this.state.lapTimers]));
+
+        if (timeElapsed) document.title = formatHourMinSec(timeElapsed) + formatMilliSec(timeElapsed);
+        else document.title = 'Stopwatch Web App';
     }
 
     spaceBarListener = (e) => {

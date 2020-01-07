@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Navbar extends Component {
-    render() {
-        return (
-            <header className="main-nav">
-                <div className="container">
-                    <h1 className="logo">Stopwatch</h1>
-                </div>
-                <nav>
+function Navbar() {
+    return (
+        <header className="main-nav">
+            <div className="container">
+                <h1 className="logo">Stopwatch</h1>
+            </div>
+            <nav>
 
-                </nav>
-            </header>
-        );
-    }
+            </nav>
+        </header>
+    );
 }
+
 
 export default Navbar;
