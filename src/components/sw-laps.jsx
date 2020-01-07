@@ -42,20 +42,6 @@ class Laps extends Component {
                             </li>
                         ))}
                     </div>
-
-
-
-
-
-
-                    {/* <div className="container">
-                        <div className="lap-btn-container">
-                            <button onClick={onLapReset} className="btn-custom btn-secondary m-0">Reset laps</button>
-                        </div>
-                        <div className="laps-container">
-                            {this.createList()}
-                        </div>
-                    </div> */}
                 </div>
             </React.Fragment >
         );
