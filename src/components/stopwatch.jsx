@@ -18,7 +18,6 @@ class StopWatch extends Component {
             timeThen: null,
             lapTimers: [],
         };
-
         this.interval = null;
     }
 
@@ -51,21 +50,23 @@ class StopWatch extends Component {
         }
     }
 
+
+
     clockLoop = () => {
-        let timeThen;
+        let { timeThen } = this.state;
         let timeDelta;
         let timeNow = Date.now();
 
-        if (this.state.timeThen) {
-            timeThen = this.state.timeThen;
-        }
-        else {
+
+        if (!timeThen) {
             timeThen = Date.now() - this.state.timeElapsed;
         }
 
         timeDelta = (timeNow - timeThen);
         this.setState({ timeElapsed: timeDelta, timeThen: timeThen });
     }
+
+
 
     handleStart = () => {
         this.interval = setInterval(this.clockLoop, 10);

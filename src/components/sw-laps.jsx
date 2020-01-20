@@ -23,7 +23,6 @@ class Laps extends Component {
         return lapTimers;
     }
 
-
     render() {
         const { onLapReset, onDelete } = this.props;
         return (
