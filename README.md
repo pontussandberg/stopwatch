@@ -1,4 +1,4 @@
-Simpel stopwatch web app implemented with ReactJS, CSS3, HTML5.
+Simpel stopwatch web app implemented with ReactJS.
 <br/><br/>
 Clone link https://github.com/pontussandberg/stopwatch-app.git
 <br/><br/>
